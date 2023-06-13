@@ -1,0 +1,17 @@
+CREATE TABLE adresses (
+	idAdresse INT NOT NULL,
+	numero VARCHAR(10) NULL,
+	adresse1 VARCHAR(35) NULL,
+	adresse2 VARCHAR(35) NULL,
+	codePostal VARCHAR(10) NULL,
+	ville VARCHAR (50) NULL,
+	pays VARCHAR (50) NULL,
+	lastModified VARCHAR(25) NOT NULL
+);
+
+INSERT INTO adresses (idAdresse, numero, adresse1, adresse2,codePostal, ville, pays, lastModified) VALUES (1, '30', 'rue du Bas Meudon', NULL, '92130','Issy les Moulineaux','FRANCE','2023-04-17 23:05:58.991');
+INSERT INTO adresses (idAdresse, numero, adresse1, adresse2,codePostal, ville, pays, lastModified) VALUES (2, '15', 'rue de Paris', NULL, '75015','Paris','FRANCE','2023-04-18 12:17:58.991');
+INSERT INTO adresses (idAdresse, numero, adresse1, adresse2,codePostal, ville, pays, lastModified) VALUES (3, '45', 'avenue du Maine', 'BAL 75','92100','Boulogne Billancourt','FRANCE','2022-04-18 10:10:58.991');
+INSERT INTO adresses (idAdresse, numero, adresse1, adresse2,codePostal, ville, pays, lastModified) VALUES (4, '60', 'avenue de la République', NULL, '73200','Albertville','FRANCE','2021-04-18 15:20:58.991');
+INSERT INTO adresses (idAdresse, numero, adresse1, adresse2,codePostal, ville, pays, lastModified) VALUES (5, '75', 'chemin du bus', NULL, '69006','Lyon','FRANCE','2020-04-18 20:22:58.991');
+INSERT INTO adresses (idAdresse, numero, adresse1, adresse2,codePostal, ville, pays, lastModified) VALUES (6, '90', 'allée des chemins', NULL, '21000','Lannion','FRANCE','2020-04-18 15:22:58.991');

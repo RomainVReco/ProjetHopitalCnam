@@ -1,0 +1,25 @@
+CREATE TABLE medecins (
+	idSalarie INT NOT NULL,
+	nom VARCHAR(64) NOT NULL,
+	prenom VARCHAR(64) NOT NULL,
+	dateEntree DATE NOT NULL,
+	dateSortie DATE NULL,
+	anciennete INT NULL,
+	remunerationFixe DECIMAL(11,2) NOT NULL,
+	remunerationVariable DECIMAL(8,2) NOT NULL,
+	nbreActes INT NULL,
+	obtentionDoctorat DATE NOT NULL,
+	idConsultationEnCours INT NULL
+);
+
+INSERT INTO medecins (idSalarie, nom, prenom, dateEntree, dateSortie, anciennete, remunerationFixe, remunerationVariable, nbreActes, obtentionDoctorat, idConsultationEnCours) 
+VALUES (1, 'LAENNEC', 'René', '2023-04-18', NULL, 12, 24000.05, 1000, NULL, '1811-02-17', NULL);
+
+INSERT INTO medecins (idSalarie, nom, prenom, dateEntree, dateSortie, anciennete, remunerationFixe, remunerationVariable, nbreActes, obtentionDoctorat, idConsultationEnCours) 
+VALUES (2, 'PARE', 'Ambroise', '2020-06-25', NULL, 36, 36000.85, 2000.57, NULL, '1540-09-02', NULL);
+
+INSERT INTO medecins (idSalarie, nom, prenom, dateEntree, dateSortie, anciennete, remunerationFixe, remunerationVariable, nbreActes, obtentionDoctorat, idConsultationEnCours) 
+VALUES (3, 'CHARCOT', 'Jean-Martin', '2000-11-30', NULL, 92, 99999.99, 9999.99, NULL, '1855-01-23', NULL);
+
+INSERT INTO medecins (idSalarie, nom, prenom, dateEntree, dateSortie, anciennete, remunerationFixe, remunerationVariable, nbreActes, obtentionDoctorat, idConsultationEnCours) 
+VALUES (4, 'FLEMING', 'Alexander', '1990-07-01', NULL, 120, 48000, 2500, NULL, '1911-05-10', NULL);

@@ -1,0 +1,29 @@
+CREATE TABLE consultations (
+	idConsultation INT NOT NULL,
+	horodatageDebut TIMESTAMP NOT NULL,
+	horodatageFin TIMESTAMP NULL,
+	detailClinique VARCHAR(3000) NOT NULL,
+	listePrescription VARCHAR (500) NOT NULL,
+	idPatient INT NOT NULL,
+	idMedecin INT NOT NULL,
+	listePathologie VARCHAR(1000) NULL,
+	idMateriel INT NULL
+);
+
+INSERT INTO consultations (idConsultation, horodatageDebut, horodatageFin, detailClinique, listePrescription, idPatient, idMedecin, listePathologie, idMateriel)
+VALUES (1, '2023-04-30 21:52:06', '2023-04-30 22:03:38', 'Détail clinique de la consultation numero 1', '1 jour de repos', 1, 1, 'Poil dans la main',NULL);
+
+INSERT INTO consultations (idConsultation, horodatageDebut, horodatageFin, detailClinique, listePrescription, idPatient, idMedecin, listePathologie, idMateriel)
+VALUES (2, '2023-04-28 21:52:06', '2023-04-29 22:03:38', 'Détail clinique de la consultation numero 2', '2 jour de repos', 2, 2, 'Fleminginte',NULL);
+
+INSERT INTO consultations (idConsultation, horodatageDebut, horodatageFin, detailClinique, listePrescription, idPatient, idMedecin, listePathologie, idMateriel)
+VALUES (3, '2023-03-26 21:52:06', '2023-03-27 22:03:38', 'Détail clinique de la consultation numero 3', '3 jour de repos', 3, 3, 'Fleminginte aigüe', NULL);
+
+INSERT INTO consultations (idConsultation, horodatageDebut, horodatageFin, detailClinique, listePrescription, idPatient, idMedecin, listePathologie, idMateriel)
+VALUES (4, '2022-03-26 21:52:06', '2022-03-27 22:03:38', 'Détail clinique de la consultation numero 4', '4 jour de repos', 4, 4, 'Jemenfoutisme caractérisé', NULL);
+
+INSERT INTO consultations (idConsultation, horodatageDebut, horodatageFin, detailClinique, listePrescription, idPatient, idMedecin, listePathologie, idMateriel)
+VALUES (5, '2020-01-20 21:52:06', '2020-01-27 22:03:38', 'Détail clinique de la consultation numero 5', '5 jour de repos', 5, 1, 'Typhus, Diphtérie, Dysenterie', NULL);
+
+INSERT INTO consultations (idConsultation, horodatageDebut, horodatageFin, detailClinique, listePrescription, idPatient, idMedecin, listePathologie, idMateriel)
+VALUES (6, '2020-02-20 21:52:06', '2020-02-27 22:03:38', 'Détail clinique de la consultation numero 6', '6 jour de repos', 2, 1, 'Sida', NULL);

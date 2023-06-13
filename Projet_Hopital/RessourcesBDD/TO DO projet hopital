@@ -1,0 +1,58 @@
+TO DO
+
+1. Patients
+    a. Creer la table SQL ==> OK
+    b. Coder le DAO
+        i. Coder les conditions de vérification d'existence ==> OK
+        ii. Coder une méthode findByName, findByNumSS ==> OK
+        iii. Quand la table/classe Adresses disponibles reprendre les méthodes utilisant cette classe pour les compléter ==> OK
+        iv. Quand le iii est fait, coder une méthode findByAdresse ==> OK
+        v. Coder une méthode pour récupérer les consultations d'un patient ==> OK
+    c. Coder la partie test JUNIT ==> OK -> reste update
+
+2. Adresses :
+    a. Creer la table SQL ==> OK
+    b. Coder la DAO ==> OK
+    c. Coder la partie test JUNIT
+
+3. Médecin
+    a. Table SQL ==> OK
+    b. DAO ==> OK
+    c. Ajouter service et spécialité dans la table SQL-> to do
+    d. Une fois Service et spécialité ajouté, reprendre la méthode findById
+    e. Créer une méthode findByName
+    f. Créer une méthode findBySpecialite
+    g. Coder la partie test JUNIT
+
+4. Consultation :
+    a. Créer la table SQL ==> OK
+    b. Créer le DAO ==> OK
+    c. Créer un findByPatient ==> OK
+    d. Créer un findByMedecin ==> OK
+    e. Creer un findByPathologie ==> OK
+    f. Coder la partie test JUNIT ==> OK, reste findByMedecin
+
+5. Services
+    a. Créer la table SQL ==> OK
+    b. Créer le DAO ==> OK
+    c. Coder la partie test JUNIT ==> OK
+
+6. Specialites
+    a. Créer la table SQL ==> OK
+    b. Créer le DAO ==> OK
+    c. Coder la partie test JUNIT -> TO DO 
+
+7. Logins 
+    a. gérer le cas SQLIntegrityConstraintViolationException
+    b. finir de coder la DAOTest
+    c. Finir la vue Connexion
+    d. créer un objet de sessionn
+        
+
+1. Finir de coder :
+    a. Medecin
+    b. Consultation
+    c. Patient
+        i. setListeConsultation
+        ii. Impression dossier (id, nom, prenom, date de création, liste des consultations avec dates)
+        II

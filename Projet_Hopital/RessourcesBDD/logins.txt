@@ -1,0 +1,9 @@
+CREATE TABLE logins (
+	idLogin INT NOT NULL,
+	login VARCHAR(64) NOT NULL UNIQUE,
+	password VARCHAR(64) NOT NULL,
+	typePoste VARCHAR(20) NOT NULL
+);
+
+INSERT INTO logins (idLogin, login, password, typePoste) VALUES (1, 'admin', 'admin', 'Administrateur');
+INSERT INTO logins (idLogin, login, password, typePoste) VALUES (2, 'rlaennec', 'admin', 'Médecin');

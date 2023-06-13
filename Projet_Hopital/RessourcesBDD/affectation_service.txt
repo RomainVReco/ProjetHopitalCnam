@@ -1,0 +1,9 @@
+CREATE TABLE affectation_service (
+	idService INT NOT NULL,
+	idMedecin INT NOT NULL,
+);
+
+INSERT INTO affectation_service (idService, idMedecin) VALUES (1,1); 
+INSERT INTO affectation_service (idService, idMedecin) VALUES (1,2);
+INSERT INTO affectation_service (idService, idMedecin) VALUES (2,3);
+INSERT INTO affectation_service (idService, idMedecin) VALUES (3,4);
