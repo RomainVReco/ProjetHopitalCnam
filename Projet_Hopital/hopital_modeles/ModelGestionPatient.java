@@ -12,7 +12,7 @@ import connexion.SingleConnection;
  * Modèle pour la recherche de patient
  * 
  * Gère l'accès à la base de données via les DAO
- * Seules les recherches par numéro SS, Nom et idPatient sont possibles
+ * Seules les recherches par numéro SS, Nom et idPatient sont possibles 
  * @author Romain
  *
  */
