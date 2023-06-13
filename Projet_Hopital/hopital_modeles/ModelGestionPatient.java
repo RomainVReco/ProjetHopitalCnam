@@ -3,14 +3,20 @@ package hopital_modeles;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.table.DefaultTableModel;
-
 import DAO.PatientsDAO;
 import Exceptions.ErreurInterrogationBDD;
 import Hopital.Patients;
 import connexion.SingleConnection;
 
-public class ModelGestionPatient implements ModelPatient {
+/**
+ * Modèle pour la recherche de patient
+ * 
+ * Gère l'accès à la base de données via les DAO
+ * Seules les recherches par numéro SS, Nom et idPatient sont possibles
+ * @author Romain
+ *
+ */
+public class ModelGestionPatient {
 	PatientsDAO patientDAO;
 	String critereRecherche="", lancerRecherche="Rechercher";
 	
