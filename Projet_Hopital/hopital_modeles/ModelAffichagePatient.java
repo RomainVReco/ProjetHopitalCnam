@@ -8,15 +8,34 @@ import Hopital.Adresses;
 import Hopital.Patients;
 import connexion.SingleConnection;
 
+/**
+ * Modèle pour l'affichage d'un patient qui a été recherché et sélectionné dans la vue RechercheAgentPatient
+ * 
+ * Cette vue étant dédiée à l'affichage et la modification, le modèle ne permet que le modification du patient affiché. 
+ * 
+ * Afin de transmettre les informations modifiées nécessaires à la base données, la classe contient 2 variables d'instances :
+ * {@code patientAffiche} qui permettra de stocker le patient à modifier et {@code adresseAffiche} qui stocke les informations
+ * relatives à l'adresse du patient à modifier
+ * 
+ * @author Romain
+ *
+ */
 public class ModelAffichagePatient {
 	PatientsDAO patientDAO;
 	AdressesDAO adresseDAO;
 	Patients patientAffiche;
 	Adresses adresseAffiche;
 
+	/**
+	 * Constructeur par défaut
+	 */
 	public ModelAffichagePatient() {
 	}
 	
+	/**
+	 * Constructeur du modèle qui prend en paramètre un patient, qui initialise la variable d'instance {@code patientAffiche}
+	 * @param patientAffiche
+	 */
 	public ModelAffichagePatient(Patients patientAffiche) {
 		super();
 		this.patientAffiche = patientAffiche;
@@ -30,10 +49,16 @@ public class ModelAffichagePatient {
 		this.patientAffiche = patientAffiche;
 	}
 	
-	public boolean creerPatient() {
-		return false;
-	}
-	
+	/**
+	 * Prend en paramètre la liste des informations personnelles et d'adresse du patient à modifier, et l'idAdresse afin de faire le lien
+	 * avec la table Adresses
+	 * 
+	 * 2 objets Patients et Adresses sont créés et passés au DAO pour modifier la base de données.
+	 * 
+	 * @param list La liste des informations du Patient, personnelles et d'adresses.
+	 * @param idAdressePatient L'identifiant de l'adresse
+	 * @return {@code true} si la modification du patient à pu être faite
+	 */
 	public boolean modifierPatient(List<String> list, int idAdressePatient) {
 		int i=0;
 		patientDAO = new PatientsDAO(SingleConnection.getInstance());
@@ -68,6 +93,11 @@ public class ModelAffichagePatient {
 		else return false;
 	}
 	
+	/**
+	 * Récupère l'adresse du patient, à partir du patient enregistré dans la variable d'instance {@code patientAffiche}
+	 * puis l'enregistre dans la variable d'instance {@code adresseAffiche} pour la renvoyer.
+	 * @return l'adresse du patient enregistré dans le modèle
+	 */
 	public Adresses getAdressePatient() {
 		adresseDAO = new AdressesDAO(SingleConnection.getInstance());
 		adresseAffiche = adresseDAO.findById(patientAffiche.getAdressePatient().getIdAdresse()).orElse(new Adresses());

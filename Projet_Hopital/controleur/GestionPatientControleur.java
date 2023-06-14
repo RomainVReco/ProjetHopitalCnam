@@ -148,7 +148,8 @@ public class GestionPatientControleur {
 	
 	/**
 	 * Passe les critères de recherche au modèle pour récuéprer le ou les patients
-	 * Utilise la variable d'instance {@code lastRecherche}, qui contient la saisie utilisateur 
+	 * Utilise la variable d'instance {@code lastRecherche}, qui contient la saisie utilisateur, 
+	 * lorsque la méthode correspondant au critère de recherche est trouvée
 	 * 
 	 * @param critereRecherche le critère de recherche sélectionné par l'utilisateur
 	 */
@@ -157,11 +158,11 @@ public class GestionPatientControleur {
 			vueRecherchePatient.rechercheError(critereRecherche);
 		}
 		else if (critereRecherche.equals("Nom")) {
-			listePatients = modelPatient.lancerRechercheNom(critereRecherche, lastRecherche);
+			listePatients = modelPatient.lancerRechercheNom(lastRecherche);
 			afficherPatientsListe();
 		}
 		else if (critereRecherche.equals("Numéro SS")) {
-			listePatients = modelPatient.lancerRechercheNumSS(critereRecherche, lastRecherche);
+			listePatients = modelPatient.lancerRechercheNumSS(lastRecherche);
 			afficherPatientsListe();
 		}
 		else {
@@ -240,7 +241,12 @@ public class GestionPatientControleur {
 	
 	/**
 	 * Listener du bouton "Supprimer patient"
-	 * Supprimer le patient sélectionné et rafraichit la tableau des patients pour tenir compte de la suppression
+	 * Supprimer le patient sélectionné et rafraichit la tableau des patients pour tenir compte de la suppression.
+	 * Avant d'envoyer la suppression au modèle, une fenêtre de confirmation est affichée à l'utilisateur pour lui demander
+	 * de confirmer son choix. 
+	 * 
+	 * S'il s'agissait du dernier patient de la liste affichée, alors un nouveau tableau vide, construit à la volée, est affiché à l'utilisateur.
+	 * 
 	 * Si aucune ligne du tableau des patients n'est sélectionnée, le listener ne déclenche aucune action.
 	 */
 	class SupprimerPatientListener implements ActionListener {
@@ -280,7 +286,7 @@ public class GestionPatientControleur {
 				                }
 				            ) {
 				                Class[] types = new Class [] {
-				                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+				                    Integer.class, String.class, String.class, String.class
 				                };
 				                boolean[] canEdit = new boolean [] {
 				                    false, false, false, false

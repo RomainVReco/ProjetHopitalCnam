@@ -38,9 +38,10 @@ public class ModelCreationPatient {
 	}
 	
 	/**
-	 * Crée le patient en base de données, ainsi que son adresse 
+	 * Crée le patient en base de données, ainsi que son adresse. Le patient n'est créé que si son adresse peut l'être aussi.
 	 * 
-	 * Le patient n'est créé que si son adresse peut l'être aussi
+	 * Récupère les informations personnelles du patient, ainsi que son adresse sous forme de deux listes,
+	 * puis créé un objet Patients et Adresses destinés à être passés au DAO pour enregistrement en base de données
 	 * 
 	 * @param infosPatient informations personnelles du patient
 	 * @param infosAdresse adresse du patient
@@ -93,8 +94,10 @@ public class ModelCreationPatient {
 	
 	/**
 	 * Permet la mise à jour des informations du patient nouvelle créé
-	 * 
 	 * Ici, la mise à jour du patient en base ne dépend pas de la bonne mise à jour de l'adresse
+	 * 
+	 * Récupère les informations personnelles du patient, ainsi que son adresse sous forme de deux listes,
+	 * puis créé un objet Patients et Adresses destinés à être passés au DAO pour enregistrement des modifications en base de données
 	 * 
 	 * @param list informations personnelles du patient nouvellement créé et faisant l'objet de modification
 	 * @param idAdressePatient id de l'adresse du patient nouvellement créée
