@@ -17,8 +17,14 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Vue d'affichage des consultations
- * Accessible par un médecin
+ * Vue d'affichage des consultations, accessible par un médecin
+ * Permettra à terme de :
+ * - renseigner le détail clinique
+ * - Choisir une ou plusieurs pathologies et visualiser le traitement recommandé
+ * - Choisir le matériel nécessaire au soin
+ * - Visualiser les consultations précédentes du patient et en afficher une sélectionnée
+ * 
+ * En cours de développement, non disponible dans la version actuelle du logiciel 
  * 
  * @author Romain
  *
@@ -329,7 +335,9 @@ public class VueConsultation extends JFrame {
         pack();
     }                      
 
-                                
+/**
+ *  Permet de lancer la vue indépendamment du logiciel 
+ */
     public static void main(String args[]) {
 
         EventQueue.invokeLater(new Runnable() {

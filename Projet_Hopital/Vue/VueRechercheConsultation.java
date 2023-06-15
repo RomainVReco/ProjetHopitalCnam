@@ -25,6 +25,21 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Vue de recherche des consultations, accessible par un médecin. 
+ * 
+ * Inachevé pour le moment, permettra à terme de :
+ * - Rechercher des consultations par nom, pathologie ou numéro de SS
+ * - Afficher une consultation sélectionnée
+ * - Afficher la fenetre de création de consultation 
+ * - Procéder à la suppression d'une consultation sélectionnée
+ * 
+ *  Non disponible dans la version actuelle du logiciel
+ *  
+ * @author Romain
+ *
+ */
+@SuppressWarnings("serial")
 public class VueRechercheConsultation extends JFrame {
 	
     private JButton afficherPatientBouton;
@@ -47,10 +62,9 @@ public class VueRechercheConsultation extends JFrame {
     public VueRechercheConsultation() {
         initComponents();
     }
-
-    @SuppressWarnings({ "unchecked", "serial" })                       
+    
+    // Initialisation des composants de la vue
     private void initComponents() {
-
         barreRecherche = new JPanel();
         vueSalarie = new JPanel();
         nomVue = new JLabel();
@@ -70,17 +84,16 @@ public class VueRechercheConsultation extends JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Recherche consultation");
-        setPreferredSize(new Dimension(900, 300));
+        setSize(new Dimension(1500, 1500));
 
+        // Panel contenant les informations du médecin affichant la vue et le bouton de déconnexion
         barreRecherche.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         barreRecherche.setPreferredSize(new Dimension(550, 120));
 
-        nomVue.setText("MÃ©decin :");
-
+        nomVue.setText("Médecin :");
         nomSalarieUtilisateur.setText("{nomSalarie}");
-
-        deconnexion.setText("DÃ©connexion");
-    
+        deconnexion.setText("Déconnexion");
+        
         GroupLayout vueSalarieLayout = new GroupLayout(vueSalarie);
         vueSalarie.setLayout(vueSalarieLayout);
         vueSalarieLayout.setHorizontalGroup(
@@ -105,21 +118,14 @@ public class VueRechercheConsultation extends JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
+        // Panel de barre de recherche des consultations
         rechercheConsultation.setText("Rechercher une consultation par : ");
 
-        choixCritereRecherche.setModel(new DefaultComboBoxModel<>(new String[] { "Nom patient", "Pathologie", "NumÃ©ro SS" }));
+        choixCritereRecherche.setModel(new DefaultComboBoxModel<>(new String[] { "Nom patient", "Pathologie", "Numéro SS" }));
      
         champRecherche.setForeground(new Color(204, 204, 204));
-        champRecherche.setText("Indiquer votre critÃ¨re de recherche");
+        champRecherche.setText("Indiquer votre critère de recherche");
         champRecherche.setPreferredSize(new Dimension(180, 24));
-        champRecherche.addFocusListener(new FocusAdapter() {
-            public void focusGained(FocusEvent evt) {
-                champRechercheFocusGained(evt);
-            }
-            public void focusLost(FocusEvent evt) {
-                champRechercheFocusLost(evt);
-            }
-        });
 
         lancerRechercheBouton.setText("Rechercher");
         lancerRechercheBouton.setPreferredSize(new Dimension(90, 24));
@@ -158,8 +164,10 @@ public class VueRechercheConsultation extends JFrame {
 
         getContentPane().add(barreRecherche, BorderLayout.NORTH);
 
+        // Panel d'affichage du tableau restituant les consultations trouvées 
         resultatRechercheConsultation.setPreferredSize(new Dimension(500, 250));
 
+        // matrice d'affichage des consultations
         tableauRechercheConsultation.setModel(new DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -169,7 +177,7 @@ public class VueRechercheConsultation extends JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "idConsultation", "Nom Patient", "PrÃ©nom Patient", "NumÃ©ro SS", "Pathologie(s)", "MatÃ©riel"
+                "idConsultation", "Nom Patient", "Prénom Patient", "Numéro SS", "Pathologie(s)", "Matériel"
             }
         ) {
             Class[] types = new Class [] {
@@ -209,13 +217,14 @@ public class VueRechercheConsultation extends JFrame {
 
         getContentPane().add(resultatRechercheConsultation, BorderLayout.CENTER);
 
+        // Panel d'affichage des boutons de création, d'affichage et de suppression de consultation
         extractionConsultation.setMaximumSize(new Dimension(32767, 250));
         extractionConsultation.setPreferredSize(new Dimension(150, 250));
 
         afficherPatientBouton.setText("Afficher consultation");
         afficherPatientBouton.setPreferredSize(new Dimension(90, 24));
 
-        creationPatientBouton.setText("CrÃ©er consultation");
+        creationPatientBouton.setText("Créer consultation");
         creationPatientBouton.setPreferredSize(new Dimension(90, 24));
      
         supprimerPatientBouton.setText("Supprimer consultation");
@@ -252,19 +261,8 @@ public class VueRechercheConsultation extends JFrame {
         pack();
     }                   
 
-  
-
-    private void champRechercheFocusLost(FocusEvent evt) {                                         
-        champRecherche.setText("Indiquer votre critÃ¨re de recherche");
-    }                                        
-    private void champRechercheFocusGained(FocusEvent evt) {                                           
-        champRecherche.setText("");
-    }                                          
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    // Affichage de la vue sans lancer le logiciel
+      public static void main(String args[]) {
       
         EventQueue.invokeLater(new Runnable() {
             public void run() {

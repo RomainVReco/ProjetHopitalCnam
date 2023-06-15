@@ -13,6 +13,13 @@ import DAO.SpecialitesDAO;
 import Hopital.Specialites;
 import connexion.SingleConnection;
 
+/**
+ * Classe de tests pour le DAO de l'objet Spécliatés
+ * L'ensemble des opérations CRUD sont testées
+ * 
+ * @author Romain
+ *
+ */
 class SpecialitesDAOTest {
 	
 	public static Connection connection = SingleConnection.getInstance();

@@ -2,6 +2,16 @@ package connexion;
 
 import java.util.Objects;
 
+/**
+ * Cette classe permet la création d'un objet Logins contenant 3 variables d'instances de type String, pour gérer la connexion à l'application :
+ * {@code login} contraction de la première lettre du prénom et du nom de famille de l'utilisateur
+ * {@code password} password défini par l'Administrateur
+ * {@code typePoste} correspond à l'emploi occupé par le salarié 
+ * 
+ * La variable {@code idLogin} est l'identifiant unique de chaque couple login + password.
+ * 
+ * @author Romain
+ */
 public class Logins {
 	
 	int idLogin ;

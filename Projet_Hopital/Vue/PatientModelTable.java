@@ -3,7 +3,7 @@ package Vue;
 import javax.swing.table.AbstractTableModel;
 
 /**
- * Classe définissant le modèle du tableau d'affichage des patients
+ * Classe définissant le modèle du tableau d'affichage des patients, en étendant la classe abstraite AbstractTableModel
  * @author Romain
  *
  */

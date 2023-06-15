@@ -17,10 +17,19 @@ import Hopital.Services;
 import Hopital.Specialites;
 import connexion.SingleConnection;
 
+/**
+ * Classe de test du DAO de l'objet Medecins
+ * 
+ * Inachevée pour le moment mais inutlisé dans la version actuelle du logiciel 
+ * 
+ * @author Romain
+ *
+ */
 class MedecinsDAOTest {
 
 	public static Connection connection = SingleConnection.getInstance();
 	
+	// vérifie la bonne création d'un nouveau médecin en base de données
 	@Test
 	void testCreate() {
 		

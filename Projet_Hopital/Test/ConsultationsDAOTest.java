@@ -27,10 +27,18 @@ import Hopital.Medecins;
 import Hopital.Patients;
 import connexion.SingleConnection;
 
+/**
+ * Classe de test du DAO pour l'objet Consultations
+ * 
+ * Pour le moment non fonctionnel mais non utilisé dans la version actuelle du logiciel
+ * @author Romain
+ *
+ */
 class ConsultationsDAOTest {
 	
 	public static Connection connection = SingleConnection.getInstance();
 	
+	// Vérifie la création d'une nouvelle consultation en base de données
 	@Test
 	void testCreate() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -61,8 +69,11 @@ class ConsultationsDAOTest {
 		}
 	}
 	
+	/**
+	 * Vérifie l'échec de création d'une consultaiton en double (même identifiant) et l'absence d'erreur
+	 */
 	@Test
-	void testCreateExisting() {
+	void testCreateFail() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
 		Consultations consultationNouvelle = consultationDAO.findById(6).get();
 		
@@ -71,6 +82,9 @@ class ConsultationsDAOTest {
 		assertFalse(insertStatus);
 	}
 
+	/**
+	 * Vérifie la bonne mise à jour de l'heure de fin de consultation en base de données
+	 */
 	@Test
 	void testUpdateHorodatageFin() {
 		
@@ -92,6 +106,9 @@ class ConsultationsDAOTest {
 
 	}
 	
+	/**
+	 * Vérifie la possibilité d'insérer une heure de fin de consultation null
+	 */
 	@Test
 	void testUpdateHorodatageFinNull () {
 		LocalDateTime ldtFin = null ;
@@ -106,6 +123,9 @@ class ConsultationsDAOTest {
 		assertEquals(null,consultationTest.getHorodatageFin());
 	}
 	
+	/**
+	 * Vérifier que l'horodatage de fin de consultation ne soit pas inférieur à la date de création
+	 */
 	@Test
 	void testUpdateHorodatageFinIsBefore () {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -123,6 +143,7 @@ class ConsultationsDAOTest {
 		assertEquals(null,consultationTest.getHorodatageFin());
 	}
 
+	// Vérifie la bonne mise à jour des informations de consultation
 	@Test
 	void testUpdate() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -152,6 +173,9 @@ class ConsultationsDAOTest {
 		assertTrue(consultationTest.getPathologie().contains("e"));		
 	}
 	
+	/**
+	 * Vérifie l'échec de la mise à jour et l'absence d'erreur si la consultatio n'existe pas en base 
+	 */
 	@Test
 	void testUpdateFail() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -161,6 +185,7 @@ class ConsultationsDAOTest {
 		assertFalse(updateStatus);		
 	}
 
+	// Vérifie le que la méthode finById(int i) récupère bien un objet Consultations
 	@Test
 	void testFindById() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -169,6 +194,7 @@ class ConsultationsDAOTest {
 		assertEquals(1,consultationTest.getPatient().getIdPatient());
 	}
 
+	// Vérifie le que la méthode finByPatient(String str) récupère bien une liste d'objet Consultations
 	@Test
 	void testFindByPatient() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -180,6 +206,7 @@ class ConsultationsDAOTest {
 		assertEquals(6, listeConsultationsByName.get(1).getPatient().getIdPatient());
 	}
 	
+	// Vérifie le bon fonctionnement de la wildcard sur la méthode finByPatient(String str)
 	@Test 
 	void testFindByPatientLike() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -191,6 +218,7 @@ class ConsultationsDAOTest {
 		assertEquals(6, listeConsultationsByName.get(1).getPatient().getIdPatient());
 	}
 	
+	// Vérifie l'absence d'erreur si aucun patient n'est trouvé avec la méthode findByPatient(String str)
 	@Test 
 	void testFindByPatientEmpty() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -199,12 +227,7 @@ class ConsultationsDAOTest {
 		assertTrue(listeConsultationsByName.isEmpty());
 	}
 
-	// à coder 
-	@Test
-	void testFindByMedecin() {
-
-	}
-
+	// Vérifie le bon fonctionnement de la méthode findByPathologie(String str)
 	@Test
 	void testFindByPathologie() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -215,6 +238,7 @@ class ConsultationsDAOTest {
 		assertTrue(listeConsultationsByPathologie.contains(consultationDysphorie));
 	}
 
+	// Vérifie la bonne suppression d'une consultation existante
 	@Test
 	void testDelete() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -248,6 +272,7 @@ class ConsultationsDAOTest {
 		
 	}
 
+	// Vérifie la bonne suppression d'une consultation existante avec l'identifiant de consultation
 	@Test
 	void testDeleteById() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -275,6 +300,7 @@ class ConsultationsDAOTest {
 		assertTrue(deleteStatus);
 	}
 	
+	// Vérifie l'échec de suppression d'une consultation et d'absence d'erreur si elle n'existe pas
 	@Test
 	void testDeleteFail() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);
@@ -289,6 +315,7 @@ class ConsultationsDAOTest {
 		assertFalse(deleteStatus);
 	}
 	
+	// Vérifie l'échec de suppression d'une consultation à partir de son identifiant et d'absence d'erreur si elle n'existe pas
 	@Test
 	void testDeleteByIdFail() {
 		ConsultationsDAO consultationDAO = new ConsultationsDAO(connection);

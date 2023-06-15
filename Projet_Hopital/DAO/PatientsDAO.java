@@ -93,9 +93,7 @@ public class PatientsDAO extends AbstractDAO<Patients> {
 
 	@Override
 	public boolean delete(Patients objet) throws ErreurInterrogationBDD {
-		if (findById(objet.getIdPatient()).isEmpty()) {
-			throw new ErreurInterrogationBDD("Ce patient n'existe pas en base de données"); 
-		}
+		if (findById(objet.getIdPatient()).isEmpty()) return false; 
 		int deleteStatus = -1 ;
 		String sql = "DELETE FROM patients WHERE idPatient = ?";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {

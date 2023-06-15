@@ -15,7 +15,13 @@ import DAO.ServicesDAO;
 import Exceptions.ErreurInterrogationBDD;
 import Hopital.Services;
 import connexion.SingleConnection;
-
+/**
+ * Classe de tests pour le DAO de l'objet Services
+ * L'ensemble des opérations CRUD sont testées ainsi que leur échec
+ * 
+ * @author Romain
+ *
+ */
 class ServicesDAOTest {
 
 	public static Connection connection = SingleConnection.getInstance();

@@ -28,8 +28,9 @@ public class ConnexionControleur {
 	
 	/**
 	 * En fonction de l'argument {@code str}, lance la vue de gestion correspondante au salarié loggué. 
+	 * Si str est une chaine vide, alors rien ne se passe
 	 * 
-	 * @param str Intitulé d'une fonction d'un salarié de l'hopital, récupéré par la BDD en fonction 
+	 * @param str Intitulé d'une fonction d'un salarié de l'hopital (typePoste), récupéré par la BDD en fonction 
 	 * du rôle affecté au login
 	 */
 	public void choixVue (String str) {

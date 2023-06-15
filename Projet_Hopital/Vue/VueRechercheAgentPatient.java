@@ -21,11 +21,18 @@ import javax.swing.LayoutStyle;
 import javax.swing.ListSelectionModel;
 
 /**
+ * Interface de recherche de patients
+ * 
+ * Gère les fonctionnalités suivantes :
+ * - la recherche de patients selon le nom, le numéro de SS et l'identifiant
+ * - la sélection de patient pour affichage
+ * - la suppression d'un patient sélectionné
+ * - l'affichage d'une fenêtre de création de patient
  * 
  * @author Romain
- * Interface de recherche de patients
- * Gère la recherche, la sélection de patient et les opérations CRD
+ * 
  */
+@SuppressWarnings("serial")
 public class VueRechercheAgentPatient extends JFrame {
 
     private JScrollPane affichagePatientScroll;

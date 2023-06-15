@@ -16,10 +16,18 @@ import Exceptions.ErreurInterrogationBDD;
 import Hopital.Adresses;
 import connexion.SingleConnection;
 
+/**
+ * Classe de tests pour le DAO de l'objet Adresses
+ * @author Romain
+ *
+ */
 class AdressesDAOTest {
 	
 	public static Connection connection = SingleConnection.getInstance();
 
+	/**
+	 * Vérifier la création d'une adresse en base données
+	 */
 	@Test
 	void createAdresse() {
 		AdressesDAO adresseDAO = new AdressesDAO(connection);
@@ -39,6 +47,9 @@ class AdressesDAOTest {
 		adresseDAO.delete(adresseTest);
 	}
 	
+	/**
+	 * Vérifie l'absence d'enregistrement d'une adresse et d'erreur en cas de doublon d'identifiant
+	 */
 	@Test
 	void createAdresseFail() {
 		AdressesDAO adresseDAO = new AdressesDAO(connection);
@@ -53,6 +64,9 @@ class AdressesDAOTest {
 		assertFalse(adresseCreationStatus);
 	}
 	
+	/**
+	 * Vérifier la bonne suppression d'une adresse en base
+	 */
 	@Test
 	void deleteAdresse() {
 		AdressesDAO adresseDAO = new AdressesDAO(connection);
@@ -74,6 +88,9 @@ class AdressesDAOTest {
 		assertTrue(adresseDeleteStatus);
 	}
 	
+	/**
+	 * Vérifier l'echec de suppression et l'absence d'erreur pour une adresse inexistante en base
+	 */
 	@Test
 	void deleteAdresseFail() {
 		AdressesDAO adresseDAO = new AdressesDAO(connection);
@@ -85,6 +102,9 @@ class AdressesDAOTest {
 		assertFalse(adresseDeleteStatus);
 	}
 	
+	/**
+	 * Vérifie la bonne mise à jour de l'adresse en base de données
+	 */
 	@Test
 	void updateAdresse() {
 		AdressesDAO adresseDAO = new AdressesDAO(connection);
@@ -112,6 +132,9 @@ class AdressesDAOTest {
 		adresseDAO.delete(adresseUpdate);
 	}
 
+	/**
+	 * Vérifie l'echec de mise à jour et l'absence d'erreur en cas d'adresse inexistante en base
+	 */
 	@Test
 	void updateAdresseFail() {
 		AdressesDAO adresseDAO = new AdressesDAO(connection);

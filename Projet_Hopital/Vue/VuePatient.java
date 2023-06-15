@@ -21,9 +21,9 @@ import idGenerator.IdGenPatients;
 /**
  * Ecran d'affichage des informations du patient.
  * 
- * Cette vue sert aussi bien pour l'affichage des informations d'un patient ou pour la création d'un nouveau patient
+ * Cette vue sert aussi bien pour l'affichage des informations d'un patient préalablement recherché avec le vue VueRecherchePatient ou pour la création d'un nouveau patient
+ * 
  * @author Romain
- *
  */
 @SuppressWarnings("serial")
 public class VuePatient extends JFrame {

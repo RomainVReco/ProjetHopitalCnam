@@ -1,10 +1,18 @@
 package idGenerator;
 
+import java.util.Random;
+
+/**
+ * Génère un identifiant aléatoire compris entre 7 et 2507.
+ * Utilisé dans la classe Médecins
+ * 
+ * @author Romain
+ *
+ */
 public class IdGenMedecin {
-	private static int idM = 4 ;
 	
 	public static int getIdGenMedecin() {
-		return idM++;
+		return (new Random().nextInt(2500))+7;
 	}
 
 }

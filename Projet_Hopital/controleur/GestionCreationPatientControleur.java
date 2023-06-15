@@ -68,6 +68,8 @@ public class GestionCreationPatientControleur {
 	
 	/**
 	 * Contrôle le format du code postal 
+	 * La même méthode est utilisée dans le contrôleur GestionAffichagePatientControleur. Pour une maintenance simplifiée,
+	 * ce contrôle devrait être remontée dans la création de la vue directement.
 	 * 
 	 * @return {@code true} si CP < 10 caractères
 	 */

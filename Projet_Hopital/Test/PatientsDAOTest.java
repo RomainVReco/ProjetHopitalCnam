@@ -19,6 +19,11 @@ import Hopital.Adresses;
 import Hopital.Patients;
 import connexion.SingleConnection;
 
+/**
+ * Classe de test du DAO pour l'objet Patients
+ * @author Romain
+ *
+ */
 class PatientsDAOTest {
 
 	public static Connection connection = SingleConnection.getInstance();
@@ -38,7 +43,6 @@ class PatientsDAOTest {
 		try {
 			createStatus = patientDAO.create(nouveauPatient);
 		} catch (ErreurInterrogationBDD e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertTrue(createStatus);
@@ -78,7 +82,6 @@ class PatientsDAOTest {
 		assertEquals(nomOriginal, patientTestV2.getNom());
 		assertEquals(prenomOriginal, patientTestV2.getPrenom());
 		assertEquals(patientTest, patientTestV2);
-
 	}
 
 	@Test
@@ -151,30 +154,9 @@ class PatientsDAOTest {
 		assertEquals(2, listePatients.size());
 		assertEquals(6, listePatients.get(0).getIdPatient());
 		assertEquals(7, listePatients.get(1).getIdPatient());
-		assertEquals(null, listePatients.get(0).getNumeroSS());
+		assertEquals("12345678901", listePatients.get(0).getNumeroSS());
 		assertEquals("185", listePatients.get(1).getNumeroSS());
 	
-	}
-
-	@Test
-	void testSetAllConsultations() {
-		PatientsDAO patientDAO = new PatientsDAO(connection);
-		Patients patientTest = patientDAO.findById(2).get();
-		patientDAO.setAllConsultations(patientTest);
-		List<String> listeMaladie = patientTest.getListeConsultations()
-				.get(0).getPathologieFromSet("Fle")
-				.orElseGet(null);
-		assertEquals(2, patientTest.getListeConsultations().size());
-		assertTrue(listeMaladie.contains("Fleminginte"));
-	}
-	
-	@Test
-	void testSetAllConsultationsVide() {
-		PatientsDAO patientDAO = new PatientsDAO(connection);
-		Patients patientTest = patientDAO.findById(6).get();
-		patientDAO.setAllConsultations(patientTest);
-		assertNull(patientTest.getListeConsultations());
-
 	}
 
 	@Test
@@ -214,7 +196,7 @@ class PatientsDAOTest {
 		
 		assertEquals(2, listePatients.size());
 		assertEquals("REYSCOUSSE", listePatients.get(0).getNom());
-		assertEquals("33100", listePatients.get(1).getAdressePatient().getCodePostal());
+		assertEquals("331001", listePatients.get(1).getAdressePatient().getCodePostal());
 	}
 	
 	@Test

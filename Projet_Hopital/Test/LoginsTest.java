@@ -14,6 +14,13 @@ import Exceptions.ErreurInterrogationBDD;
 import connexion.Logins;
 import connexion.SingleConnection;
 
+/**
+ * Classe de test du DAO pour l'objet Logins
+ * Test l'ensemble des opérations CRUD
+ * 
+ * @author Romain
+ *
+ */
 class LoginsTest {
 	
 	public static Connection connection = SingleConnection.getInstance();

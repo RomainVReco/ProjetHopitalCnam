@@ -9,14 +9,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ * Génère la vue de connexion comportant :
+ * - un champ pour le login 
+ * - un champ pour le mot de passe 
+ * - un bouton pour envoyer les deux précédents informations au contrôleur
+ * @author Romain
+ *
+ */
 @SuppressWarnings("serial")
 public class EcranConnexion extends JFrame {
 	private JLabel loginLabel ;
 	protected JTextField loginField;
 	private JLabel passwordLabel;
-	protected  JTextField passwordField;
+	protected  JPasswordField passwordField;
 	private JButton boutonConnexion;
 	FlowLayout flowLayout = new FlowLayout ();
 	private Dimension dimLabel = new Dimension (90,24);
@@ -34,9 +43,11 @@ public class EcranConnexion extends JFrame {
 		this.setVisible(true);
 	}
 
+	// initialisation des composants de la vue
 	private void initComposants() {
 		Box boxVertical = Box.createVerticalBox();
 		
+		// Panel du login
 		JPanel loginPanel = new JPanel();
 		loginPanel.setLayout(flowLayout);
 		loginPanel.setSize(new Dimension(250,30));
@@ -48,22 +59,23 @@ public class EcranConnexion extends JFrame {
 		loginPanel.add(loginLabel);
 		loginPanel.add(loginField);
 		
+		// Panel du mot de passe
 		JPanel passwordPanel = new JPanel ();
 		passwordPanel.setLayout(new FlowLayout());
 		passwordPanel.setSize(new Dimension(250,30));
 		passwordLabel = new JLabel ("Mot de passe : ");
 		passwordLabel.setPreferredSize(dimLabel);
-		passwordField = new JTextField();
+		passwordField = new JPasswordField();
 		passwordField.setPreferredSize(dimTextField);
 		passwordField.setText("admin");
 		passwordPanel.add(passwordLabel);
 		passwordPanel.add(passwordField);
 		
+		// Panel du bouton de connexion
 		JPanel boutonPanel = new JPanel ();	
 		boutonPanel.setSize(new Dimension(105,35));
 		boutonConnexion = new JButton ("Connexion");
 		boutonConnexion.setPreferredSize(dimBouton);
-//		boutonConnexion.addActionListener(null);
 		boutonPanel.add(boutonConnexion);	
 		
 		boxVertical.add(Box.createRigidArea(new Dimension(0,150)));
@@ -77,19 +89,7 @@ public class EcranConnexion extends JFrame {
 		this.add(panelConteneur);
 	}
 	
-	public void initVueCreationPatient() {
-		VueAgentCreationPatient vueAgentCreationPatient = new VueAgentCreationPatient();
-		//this.
-	}
-	
-	public void connexionError() {
-		JOptionPane.showMessageDialog(this, "Login ou mot de passe érroné");
-	}
-	
-	public void connexionGranted(String str) {
-		JOptionPane.showMessageDialog(this, "Connexion : "+str+".");
-	}
-
+	// Getters de la vue
 	public JTextField getLoginField() {
 		return loginField;
 	}
@@ -100,9 +100,14 @@ public class EcranConnexion extends JFrame {
 
 	public JButton getBoutonConnexion() {
 		return boutonConnexion;
+	}	
+
+	// Gestion des messages affichés au client 
+	public void connexionError() {
+		JOptionPane.showMessageDialog(this, "Login ou mot de passe érroné");
 	}
-
 	
-
-
+	public void connexionGranted(String str) {
+		JOptionPane.showMessageDialog(this, "Connexion : "+str+".");
+	}
 }
