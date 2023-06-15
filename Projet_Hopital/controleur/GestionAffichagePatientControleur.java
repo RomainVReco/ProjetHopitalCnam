@@ -247,7 +247,7 @@ public class GestionAffichagePatientControleur {
 		vueAffichagePatient.getChampNomPatient().setEditable(true);
 		vueAffichagePatient.getChampPrenomPatient().setEditable(true);
 		vueAffichagePatient.getChampNumeroSSPatient().setEditable(true);
-		
+		 
 		vueAffichagePatient.getChampNumAdresse().setEditable(true);
 		vueAffichagePatient.getChampAdresse1().setEditable(true);
 		vueAffichagePatient.getChampAdresse2().setEditable(true);

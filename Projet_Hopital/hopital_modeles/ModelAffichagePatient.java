@@ -99,7 +99,7 @@ public class ModelAffichagePatient {
 	 * @return l'adresse du patient enregistré dans le modèle
 	 */
 	public Adresses getAdresseAffiche() {
-		return adresseAffiche;
+		return adresseAffiche; 
 	}
 	
 	
