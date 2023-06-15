@@ -103,7 +103,7 @@ public class ModelCreationPatient {
 	 * @param idAdressePatient id de l'adresse du patient nouvellement créée
 	 * @return {@code true} si la mise à jour s'est correctement faite
 	 */
-	public boolean modifierPatient(List<String> list, int idAdressePatient) {
+	public boolean modifierPatient(List<String> list) {
 		int i=0;
 		patientDAO = new PatientsDAO(SingleConnection.getInstance());
 		adresseDAO = new AdressesDAO(SingleConnection.getInstance());
@@ -114,7 +114,7 @@ public class ModelCreationPatient {
 		patientUpdated.setIdPatient(Integer.valueOf(list.get(i++)));
 		
 		Adresses adresseUpdated = adresseCree;
-		adresseUpdated.setIdAdresse(idAdressePatient);
+//		adresseUpdated.setIdAdresse(idAdressePatient);
 		adresseUpdated.setNumero(list.get(i++));
 		adresseUpdated.setAdresse1(list.get(i++));
 		adresseUpdated.setAdresse2(list.get(i++));
@@ -133,6 +133,9 @@ public class ModelCreationPatient {
 		else return false;
 	}
 	
+	/**
+	 * @return l'adresse créé par l'utilisateur pour enregistrer le patient en base
+	 */
 	public Adresses getAdressePatient() {
 		return adresseCree;
 	}
