@@ -58,9 +58,7 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 			pstmt.setString(i++, objet.convertirSetPathologie());
 			pstmt.setInt(i++, objet.getMateriel().getIdMateriel());
 			createStatus = pstmt.executeUpdate();
-		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (createStatus==1) return true;
@@ -121,7 +119,6 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 			pstmt.setInt(i++, objet.getIdConsultation());
 			updateStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (updateStatus==1) return true;
@@ -231,7 +228,6 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 				return Optional.of(listeConsultationsByMedecin);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
@@ -250,10 +246,8 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 				return Optional.of(listeConsultationsByPathologie);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return Optional.empty();
 	}
 
@@ -267,7 +261,6 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 			pstmt.setInt(1, objet.getIdConsultation());
 			deleteStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (deleteStatus==1) return true ;
@@ -282,7 +275,6 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 			pstmt.setInt(1, idConsultation);
 			deleteStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (deleteStatus==1) return true ;
@@ -344,10 +336,7 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 				ajoutConsultation.setMateriel(materielDAO.findById(idMateriel.intValue()).orElse(null));
 			}			
 			return ajoutConsultation; 
-			
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
