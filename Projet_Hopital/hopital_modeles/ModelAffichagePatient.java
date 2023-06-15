@@ -39,7 +39,6 @@ public class ModelAffichagePatient {
 	public ModelAffichagePatient(Patients patientAffiche) {
 		super();
 		this.patientAffiche = patientAffiche;
-		this.adresseAffiche = patientAffiche.getAdressePatient();
 	}
 
 	public Patients getPatientAffiche() {
@@ -88,7 +87,6 @@ public class ModelAffichagePatient {
 		if (patientUpdateStatus==true) {
 			adresseUpdateStatus = adresseDAO.update(adresseUpdated);
 			patientAffiche=patientUpdated;
-			adresseAffiche=patientUpdated.getAdressePatient();
 			System.out.println(adresseUpdateStatus);
 			return true;
 		}
@@ -96,9 +94,13 @@ public class ModelAffichagePatient {
 	}
 	
 	/**
+	 * Récupère l'adresse du patient, à partir du patient enregistré dans la variable d'instance {@code patientAffiche}
+	 * puis l'enregistre dans la variable d'instance {@code adresseAffiche} pour la renvoyer.
 	 * @return l'adresse du patient enregistré dans le modèle
 	 */
-	public Adresses getAdresseAffiche() {
+	public Adresses getAdressePatient() {
+		adresseDAO = new AdressesDAO(SingleConnection.getInstance());
+		adresseAffiche = adresseDAO.findById(patientAffiche.getAdressePatient().getIdAdresse()).orElse(new Adresses());
 		return adresseAffiche;
 	}
 	

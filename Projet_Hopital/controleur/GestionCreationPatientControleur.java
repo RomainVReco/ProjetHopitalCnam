@@ -160,12 +160,12 @@ public class GestionCreationPatientControleur {
 		public void actionPerformed(ActionEvent e) {
 			boolean updateStatus = false;
 			List<String> infosPatientModifiees = creerPatientModifier();
-			if (listeInfosPatientModel.equals(infosPatientModifiees)) {
+			if (listeInfosPatientModel.equals(infosPatientModifiees)||onGoingModification==false) {
 				vueCreationPatient.sameInfoPatientError();
 				return;
 			}
 			else {
-				updateStatus = modelCreationPatient.modifierPatient(infosPatientModifiees);
+				updateStatus = modelCreationPatient.modifierPatient(infosPatientModifiees,idAdressePatient);
 				extrairePatient();
 			}
 			if (updateStatus==false) vueCreationPatient.updatePatientFailed();

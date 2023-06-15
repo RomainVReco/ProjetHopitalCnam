@@ -92,6 +92,7 @@ public class GestionAffichagePatientControleur {
 	 * est récupérée pour :
 	 * - être comparée aux informations initialement chargée lors de l'instanciation de la vue,
 	 * si aucune information n'a été modifiée alors une message spécifique est affiché à l'utilisateur
+	 * - le bouton "Modifier patient" doit avoir été cliqué (variable d'instance onGoingModification==true)
 	 * 
 	 * La liste des informations patient modifées est alors passée au modèle pour mise à jour dans la base de données.
 	 * Un rafraichissement de la vue est opéré en même temps. Si l'enregistrement a réussi, un message est affiché à l'utilisateur
@@ -105,7 +106,7 @@ public class GestionAffichagePatientControleur {
 			boolean updateStatus = false;
 			if (checkCodePostal()==false) return;
 			List<String> infosPatientModifiees = creerPatientModifier();
-			if (listeInfosPatientModel.equals(infosPatientModifiees)) {
+			if (listeInfosPatientModel.equals(infosPatientModifiees)||onGoingModification==false) {
 				vueAffichagePatient.sameInfoPatientError();
 				return;
 			}
@@ -148,13 +149,13 @@ public class GestionAffichagePatientControleur {
 		String dateCreation = modelAffichagePatient.getPatientAffiche().getDateCreation();
 		String idPatient = String.valueOf(modelAffichagePatient.getPatientAffiche().getIdPatient());
 		
-		String numAdresse = modelAffichagePatient.getAdresseAffiche().getNumero();
-		String adresse1 = modelAffichagePatient.getAdresseAffiche().getAdresse1();
-		String adresse2 = modelAffichagePatient.getAdresseAffiche().getAdresse2();
-		String codePostal = modelAffichagePatient.getAdresseAffiche().getCodePostal();
-		String ville = modelAffichagePatient.getAdresseAffiche().getVille();
-		String pays = modelAffichagePatient.getAdresseAffiche().getPays();
-		String lastModifiedAdresse = modelAffichagePatient.getAdresseAffiche().getDateCreationAdresse();
+		String numAdresse = modelAffichagePatient.getAdressePatient().getNumero();
+		String adresse1 = modelAffichagePatient.getAdressePatient().getAdresse1();
+		String adresse2 = modelAffichagePatient.getAdressePatient().getAdresse2();
+		String codePostal = modelAffichagePatient.getAdressePatient().getCodePostal();
+		String ville = modelAffichagePatient.getAdressePatient().getVille();
+		String pays = modelAffichagePatient.getAdressePatient().getPays();
+		String lastModifiedAdresse = modelAffichagePatient.getAdressePatient().getDateCreationAdresse();
 		
 		listeInfosPatientModel.add(nomPatient);
 		listeInfosPatientModel.add(prenomPatient);
@@ -182,7 +183,7 @@ public class GestionAffichagePatientControleur {
 		vueAffichagePatient.setChampCodePostal(codePostal);
 		vueAffichagePatient.setChampVille(ville);
 		vueAffichagePatient.setChampPays(pays);
-		idAdressePatient = modelAffichagePatient.getAdresseAffiche().getIdAdresse();
+		idAdressePatient = modelAffichagePatient.getAdressePatient().getIdAdresse();
 	}
 	
 	/**
@@ -205,7 +206,7 @@ public class GestionAffichagePatientControleur {
 		String codePostal = vueAffichagePatient.getChampCodePostal().getText();
 		String ville = vueAffichagePatient.getChampVille().getText();
 		String pays = vueAffichagePatient.getChampPays().getText();
-		String lastModifiedAdresse = modelAffichagePatient.getAdresseAffiche().getDateCreationAdresse();
+		String lastModifiedAdresse = modelAffichagePatient.getAdressePatient().getDateCreationAdresse();
 		
 		listeInfosPatient.add(nomPatient);
 		listeInfosPatient.add(prenomPatient);
