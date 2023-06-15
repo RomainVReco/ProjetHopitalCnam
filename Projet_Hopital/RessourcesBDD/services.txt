@@ -6,7 +6,7 @@ CREATE TABLE services (
 	nombrePersonnel INT NULL
 );
 
-INSERT INTO services (idService, nomService, budget, budgetConsomme, nombrePersonnel) VALUES (1, 'PÃ©diatrie', 1250000, 1000000, 2);
+INSERT INTO services (idService, nomService, budget, budgetConsomme, nombrePersonnel) VALUES (1, 'Pédiatrie', 1250000, 1000000, 2);
 INSERT INTO services (idService, nomService, budget, budgetConsomme, nombrePersonnel) VALUES (2, 'Cardiologie', 500000, 100,1);
 INSERT INTO services (idService, nomService, budget, budgetConsomme, nombrePersonnel) VALUES (3, 'Psychiatrie', 3750000, 750000.54,1);
-INSERT INTO services (idService, nomService, budget, budgetConsomme, nombrePersonnel) VALUES (4, 'PÃ©dopsychiatrie', 100, 10, 0);
+INSERT INTO services (idService, nomService, budget, budgetConsomme, nombrePersonnel) VALUES (4, 'Pédopsychiatrie', 100, 10, 0);

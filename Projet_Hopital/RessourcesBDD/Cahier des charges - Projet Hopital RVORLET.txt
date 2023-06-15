@@ -1,0 +1,43 @@
+Cahier des charges projet Hôpital - R. VORLET 
+
+ 
+
+Un patient se présente à l'hôpital pour une consultation. 
+
+En premier, il doit se présenter à l'accueil où il sera enregistré par un agent d'accueil. S'il n'a pas de dossier patient, alors l'agent doit créer le dossier du patient. L'agent doit également avoir la possibilité de le mettre à jour ou de le supprimer.  
+
+Le dossier du patient doit contenir : l'identifiant du patient, son nom, son prénom, son adresse, la date de création, la liste des consultations effectuées, les prescriptions faites (quel que soit leur nature : soins, médicaments, matériels). 
+
+Une fois enregistré, le patient se rend à une consultation où il sera reçu par un médecin. Le médecin doit pouvoir consulter la liste des consultations dans le dossier patient et doit avoir la possibilité d'en ajouter une nouvelle, modifier ou supprimer une existante. 
+
+Lors de la création d'une nouvelle consultation, le médecin doit choisir dans une liste de pathologies et d'antécédents à partir d'une liste existante. Il doit pouvoir donner les détails cliniques de la consultation dans un champ libre et dans un champ séparé la prescription (ordonnance) : soins, médicament ou appareil médicaux à octroyer au patient. 
+
+Dans le cas où un appareil médical est octroyé lors d'une consultation, son statut doit être mis à "instance". 
+
+L'ordonnance doit être exportable pour impression. 
+
+Une option doit lui permettre d'exporter un ensemble de consultation dans un fichier texte structuré et imprimable. 
+
+La consultation doit contenir : l'identifiant de la consultation, l'identifiant du patient, l'identifiant du médecin, l'horodatage de début et de fin, la ou les pathologies identifiées/supposées, le détail clinique et la prescription. 
+
+Les médecins dépendent d'un service et ont une ou plusieurs spécialités. Un médecin est rattaché administrativement à un service, un service est rattaché dans un seul hôpital mais un médecin peut exercer dans plusieurs hôpitaux. Un service dispose d'équipement et d'un budget, qui doit être suivi. 
+
+Un médecin dispose d'un identifiant, d'une date d'entrée, d'une ancienneté calculée en mois, d'un nombre d'années d'exercices, d'une rémunération fixe et variable, d'un nombre d'actes réalisés. 
+
+La récupération de matériel médical se fait auprès d'un technicien après vérification par ce dernier que la consultation effectuée requiert bien l'attribution d'un matériel spécifique. Le technicien doit pouvoir accéder à la consultation et passer le statut à "octroyé". Seuls les appareils prescrits lors de la consultation doivent être accessibles. 
+
+Un matériel médical dispose d'un identifiant, d'une quantité restante en stock, d'un horodatage d'emprunt et d'une date de retour ainsi qu'un état restitué oui/non. 
+
+Un technicien doit disposer d'un identifiant, d'une date d'entrée, d'une ancienneté calculée en mois, d'une rémunération fixe et variable, d'une liste de consultations traitées et du détail des appareils prêtés. 
+
+L'IHM devra permettre la recherche d'information grâce aux identifiants ou données personnelles. Les possibilités de recherche et d'actions dans l'IHM seront limitées au rôle de chaque personne (le multi rôles est interdit) et les accès seront protégés par un login et mot de passe. 
+
+Seul un "Super Admin" aura la possibilité d'ajouter, de modifier ou de supprimer un travailleur de l'hôpital. 
+
+L'IHM devra permettre l'accès à des statistiques diverses sur la gestion des patients comme le nombre d’appareils octroyés sur un trimestre, le nombre d’appareils octroyés par patient, les périodes de l’année qui enregistre les plus de consultations, le nombre de patients par pathologie, etc. 
+
+  
+
+Extension :  
+
+Les soins sont dispensés par des personnels spécialisés (infirmier, sage-femme, etc.) et peuvent impliquer des actes spécifiques, des médicaments, des équipements ou du matériel octroyé par un technicien. 

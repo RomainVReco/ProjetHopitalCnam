@@ -6,4 +6,4 @@ CREATE TABLE logins (
 );
 
 INSERT INTO logins (idLogin, login, password, typePoste) VALUES (1, 'admin', 'admin', 'Administrateur');
-INSERT INTO logins (idLogin, login, password, typePoste) VALUES (2, 'rlaennec', 'admin', 'MÃ©decin');
+INSERT INTO logins (idLogin, login, password, typePoste) VALUES (2, 'rlaennec', 'admin', 'Médecin');

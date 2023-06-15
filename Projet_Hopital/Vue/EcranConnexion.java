@@ -37,7 +37,7 @@ public class EcranConnexion extends JFrame {
 	public EcranConnexion () {
 		initComposants();
 		this.setSize(new Dimension(1000,500));
-		this.setTitle("Connexion");
+		this.setTitle("Connexion Hopital");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -55,7 +55,7 @@ public class EcranConnexion extends JFrame {
 		loginLabel.setPreferredSize(dimLabel);
 		loginField = new JTextField();
 		loginField.setPreferredSize(dimTextField);
-		loginField.setText("jpeuplus");
+//		loginField.setText("jpeuplus");
 		loginPanel.add(loginLabel);
 		loginPanel.add(loginField);
 		
@@ -67,7 +67,7 @@ public class EcranConnexion extends JFrame {
 		passwordLabel.setPreferredSize(dimLabel);
 		passwordField = new JPasswordField();
 		passwordField.setPreferredSize(dimTextField);
-		passwordField.setText("admin");
+//		passwordField.setText("admin");
 		passwordPanel.add(passwordLabel);
 		passwordPanel.add(passwordField);
 		
