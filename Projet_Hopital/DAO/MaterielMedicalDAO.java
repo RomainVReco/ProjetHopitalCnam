@@ -6,6 +6,16 @@ import java.util.Optional;
 import Exceptions.ErreurInterrogationBDD;
 import Hopital.MaterielMedical;
 
+/**
+ * DAO gérant les opérations CRUD pour l'objet MaterielMedical
+ * 
+ * A finir de coder
+ * 
+ * Non utilisé dans la version actuelle du logiciel
+ * 
+ * @author Romain
+ *
+ */
 public class MaterielMedicalDAO extends AbstractDAO<MaterielMedical> {
 
 	public MaterielMedicalDAO(Connection conn) {

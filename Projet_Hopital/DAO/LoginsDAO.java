@@ -10,13 +10,27 @@ import java.util.Optional;
 import Exceptions.ErreurInterrogationBDD;
 import connexion.Logins;
 
+/**
+ * DAO gérant les opérations CRUD pour l'objet Logins
+ * 
+ * L'accès à cet objet et à son utilisation doivent être réservés à l'administrateur
+ * 
+ * En plus des opérations CRUD habituelles, la classe contient deux méthodes Retrieve supplémentaire :
+ * - findByLoginPassword(String login, String password)
+ * - findByLogin(String login)
+ * 
+ * @author Romain
+ *
+ */
 public class LoginsDAO extends AbstractDAO<Logins> {
 
 	public LoginsDAO(Connection conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * La méthode de création des objets Logins en base gère la contrainte de la BDD de n'avoir qu'un identifiant unique par tuple
+	 */
 	@Override
 	public boolean create(Logins objet) throws ErreurInterrogationBDD {
 		if (findById(objet.getIdLogin()).isPresent()) return false;
@@ -51,13 +65,14 @@ public class LoginsDAO extends AbstractDAO<Logins> {
 			pstmt.setInt(i++, objet.getIdLogin());
 			updateStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (updateStatus==1) return true;
 		else return false;
 	}
 
+	// Retourne un objet Optional contenant ou non un Logins par identifiant d'un Logins
+	// Méthode en pratique inutilisée
 	@Override
 	public Optional<Logins> findById(int objet) {
 		String sql = "SELECT * FROM logins WHERE idLogin = ?;";
@@ -72,12 +87,12 @@ public class LoginsDAO extends AbstractDAO<Logins> {
 				return Optional.of(loginRecherche);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
 	}
 	
+	// Retourne un objet Optional contenant ou non un Logins, à partir d'une recherhce avec login ET du mot de passe
 	public Optional<Logins> findByLoginPassword(String login, String password) {
 		String sql = "SELECT idLogin, typePoste FROM logins WHERE login = ? AND password = ?;";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -91,12 +106,12 @@ public class LoginsDAO extends AbstractDAO<Logins> {
 				return Optional.of(loginRecherche);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();	
 	}
 	
+	// Retourne un objet Optional contenant ou non un Logins après recherche par login utilisateur 
 	public Optional<Logins> findByLogin(String login) {
 		String sql = "SELECT * FROM logins WHERE login = ?;";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -109,9 +124,7 @@ public class LoginsDAO extends AbstractDAO<Logins> {
 				Logins loginRecherche = new Logins(idLogin, login, passwordConnexion, typePoste);
 				return Optional.of(loginRecherche);
 			}
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();

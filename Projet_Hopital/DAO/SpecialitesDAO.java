@@ -11,6 +11,15 @@ import java.util.Optional;
 import Exceptions.ErreurInterrogationBDD;
 import Hopital.Specialites;
 
+/**
+ * DAO gérant les opérations CRUD pour l'objet Specialites :
+ * 
+ * En plus des opérations CRUD habituelles, le DAO contient la méthode :
+ * -  findByName(String nomSpecialite) pour retrouver une specitalite par son nom -> la wildcard '%' peut être utilisée
+ * 
+ * @author Romain
+ *
+ */
 public class SpecialitesDAO extends AbstractDAO<Specialites> {
 
 	public SpecialitesDAO(Connection conn) {
@@ -27,7 +36,6 @@ public class SpecialitesDAO extends AbstractDAO<Specialites> {
 			pstmt.setString(2, objet.getNomSpecialite());
 			createStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (createStatus==1) return true;
@@ -44,7 +52,6 @@ public class SpecialitesDAO extends AbstractDAO<Specialites> {
 			pstmt.setInt(2, objet.getIdSpecialite());
 			updateStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (updateStatus==1) return true;
@@ -61,20 +68,18 @@ public class SpecialitesDAO extends AbstractDAO<Specialites> {
 				Specialites specialiteRecherche=extraireSpecialite(rs);
 				return Optional.of(specialiteRecherche);
 			}
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
 	}
 	
-	public Optional<List<Specialites>> findByName(String nomService) {
+	public Optional<List<Specialites>> findByName(String nomSpecialite) {
 		String sql = "";
-		if (nomService.contains("%")) sql = "SELECT * FROM specialites WHERE nomSpecialite LIKE ?;";
+		if (nomSpecialite.contains("%")) sql = "SELECT * FROM specialites WHERE nomSpecialite LIKE ?;";
 		else sql = "SELECT * FROM specialites WHERE nomSpecialite = ?;";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, nomService);
+			pstmt.setString(1, nomSpecialite);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.isBeforeFirst()) {
 				List<Specialites> listeSpecialitesByNom = new ArrayList<>();
@@ -84,10 +89,8 @@ public class SpecialitesDAO extends AbstractDAO<Specialites> {
 				return Optional.of(listeSpecialitesByNom);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return Optional.empty();
 	}
 
@@ -100,13 +103,18 @@ public class SpecialitesDAO extends AbstractDAO<Specialites> {
 			pstmt.setInt(1, objet.getIdSpecialite());
 			deleteStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (deleteStatus==1) return true;
 		else return false;
 	}
 	
+	 /**
+	 * Afin d'alléger le code des méthodes de type Retrieve du DAO, cette méthode est utilisée pour
+	 * récupérer les informations des spécialités du ResultSet 
+	 * @param rs ResultSet fourni par la méthode Retrieve
+	 * @return un objet Specialites ou Null si une erreur survient
+	 */
 	private Specialites extraireSpecialite(ResultSet rs) {
 		try {
 			int idSpecialite = rs.getInt("idSpecialite");
@@ -115,7 +123,6 @@ public class SpecialitesDAO extends AbstractDAO<Specialites> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
 

@@ -11,11 +11,20 @@ import java.util.Optional;
 import Exceptions.ErreurInterrogationBDD;
 import Hopital.Services;
 
+/**
+ * DAO gérant les opérations CRUD pour l'objet Services
+ * 
+ * En plus des opérations CRUD habituelles, le DAO contient la méthode :
+ * -  findByNom(String nomService) pour retrouver un service par son nom -> la wildcard '%' peut être utilisée
+ * 
+ * 
+ * @author Romain
+ *
+ */
 public class ServicesDAO extends AbstractDAO<Services> {
 	
 	public ServicesDAO(Connection conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -31,7 +40,6 @@ public class ServicesDAO extends AbstractDAO<Services> {
 			pstmt.setFloat(4, objet.getBudgetConsomme());
 			pstmt.setInt(5, objet.getNombrePersonnel());
 			createStatus = pstmt.executeUpdate();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -98,12 +106,9 @@ public class ServicesDAO extends AbstractDAO<Services> {
 				}
 				return Optional.of(listeServicesByNom);
 			}
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return Optional.empty();
 	}
 
@@ -122,7 +127,13 @@ public class ServicesDAO extends AbstractDAO<Services> {
 		if (deleteStatus==1) return true;
 		else return false;
 	}
-	  
+	
+	 /**
+	 * Afin d'alléger le code des méthodes de type Retrieve du DAO, cette méthode est utilisée pour
+	 * récupérer les informations du service du ResultSet 
+	 * @param rs ResultSet fourni par la méthode Retrieve
+	 * @return un objet Services ou Null si une erreur survient
+	   */
 	  private Services extraireService(ResultSet rs) {
 		  try {
 			int idService = rs.getInt("idService");

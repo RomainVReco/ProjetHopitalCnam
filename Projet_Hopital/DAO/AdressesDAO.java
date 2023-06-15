@@ -11,12 +11,21 @@ import java.util.Optional;
 import Exceptions.ErreurInterrogationBDD;
 import Hopital.Adresses;
 
+/**
+ * DAO gérant les opérations CRUD pour l'objet Adresses
+ * 
+ * En plus des opérations CRUD de base, permet une recherche d'adresse par ville
+ * @author Romain
+ *
+ */
 public class AdressesDAO extends AbstractDAO<Adresses> {
 
 	public AdressesDAO(Connection conn) {
 		super(conn);
 	}
-
+	/**
+	 * Création d'adresse en base
+	 */
 	@Override
 	public boolean create(Adresses objet) throws ErreurInterrogationBDD {
 		if (findById(objet.getIdAdresse()).isPresent()) return false;
@@ -39,6 +48,9 @@ public class AdressesDAO extends AbstractDAO<Adresses> {
 		else return false;
 	}
 
+	/**
+	 * Mise à jour d'adresse en base 
+	 */
 	@Override
 	public boolean update(Adresses objet) {
 		if (findById(objet.getIdAdresse()).isEmpty()) return false;
@@ -63,6 +75,11 @@ public class AdressesDAO extends AbstractDAO<Adresses> {
 		else return false;
 	}
 
+	/**
+	 * Recherche d'adresse en base par identifiant d'adresse
+	 * 
+	 * Retourne un objet Optional contenant une Adresse ou non
+	 */
 	@Override
 	public Optional<Adresses> findById(int idAdresseRecherche) {
 		String sql = "SELECT * FROM adresses WHERE idAdresse = ?";
@@ -117,7 +134,13 @@ public class AdressesDAO extends AbstractDAO<Adresses> {
 		if (deleteStatus==1) return true;
 		else return false;
 	}
-		
+	
+	/**
+	 * Recherche des adresses par ville. La recherche doit être exacte.
+	 * 
+	 * @param city la ville à rechercher
+	 * @return un objet Optional contenant ou non une liste d'adresses
+	 */
 	public Optional<List<Adresses>> findByCity(String city) {
 		String sql = "SELECT * FROM adresses WHERE ville = ?" ;
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -134,9 +157,16 @@ public class AdressesDAO extends AbstractDAO<Adresses> {
 			e.printStackTrace();
 		}
 		return Optional.empty();
-		
 	}
 
+	/**
+	 * Méthode pour récupérer l'adresse lors de l'exécution de la méthode findByCity(String str) 
+	 * Est utilisée principalement afin de gagner en lisibilité dans la méthode findByCity(String str) 
+	 * 
+	 * @param rs ResultSet de la méthode findByCity(String str)
+	 * @return un objet Adresses ou null si la récupération des informations échoue
+	 */
+	
 	private Adresses extraireVille(ResultSet rs) {
 		try {
 			int id = rs.getInt("idAdresse");
@@ -150,7 +180,8 @@ public class AdressesDAO extends AbstractDAO<Adresses> {
 			return new Adresses(id, num, Adresse1, Adresse2, codePostal, ville, pays, adressUpdateDate);
 			
 		} catch (SQLException e) {
-			new RuntimeException("Le patient n'a pu être extrait de la BDD");
+			e.printStackTrace();
+			System.out.println("Le patient n'a pu être extrait de la BDD");
 		}
 		return null;
 	}

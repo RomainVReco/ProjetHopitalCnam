@@ -14,11 +14,19 @@ import Hopital.Medecins;
 import Hopital.Services;
 import Hopital.Specialites;
 
+/**
+ * DAO gérant les opérations CRUD pour l'objet Médecins
+ * 
+ * En plus des opérations CRUD habituelles, le DAO contient la méthode :
+ * - updateDateSortie (LocalDate dateSortie, int idMedecin) pour mettre à jour la date de sortie des effectifs d'un médecin
+ * 
+ * @author Romain
+ *
+ */
 public class MedecinsDAO extends AbstractDAO<Medecins> {
 
 	public MedecinsDAO(Connection conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -41,9 +49,7 @@ public class MedecinsDAO extends AbstractDAO<Medecins> {
 			pstmt.setInt(i++, objet.getServiceAffectation().getIdService());
 			pstmt.setInt(i++, objet.getSpecialiteMedecin().getIdSpecialite());
 			insertion = pstmt.executeUpdate();
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (insertion==1) return true;		
@@ -74,13 +80,20 @@ public class MedecinsDAO extends AbstractDAO<Medecins> {
 			pstmt.setInt(i++, objet.getIdSalarie());
 			updateStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (updateStatus==1) return true;
 		else return false;
 	}
 	
+	/**
+	 * Met à jour la date de sortie des effectifs du médecin désigné par son identifiant
+	 * 
+	 * @param dateSortie la date à enregistrer en BDD
+	 * @param idMedecin l'identifiant du médecin sur lequel la mise à jour s'applique
+	 * @return {@code true} si la mise à jour est effective
+	 * @throws ErreurInterrogationBDD
+	 */
 	public boolean updateDateSortie (LocalDate dateSortie, int idMedecin) throws ErreurInterrogationBDD {
 		if (findById(idMedecin).isEmpty()) {
 			throw new ErreurInterrogationBDD("Ce médecin n'existe pas en base de données");
@@ -92,7 +105,6 @@ public class MedecinsDAO extends AbstractDAO<Medecins> {
 			pstmt.setInt(2, idMedecin);
 			updateStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (updateStatus==1) return true;
@@ -113,7 +125,6 @@ public class MedecinsDAO extends AbstractDAO<Medecins> {
 				return Optional.of(medecinRecherche);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
@@ -130,7 +141,6 @@ public class MedecinsDAO extends AbstractDAO<Medecins> {
 			pstmt.setInt(1, objet.getIdSalarie());
 			deleteStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (deleteStatus==1) return true;
@@ -147,13 +157,19 @@ public class MedecinsDAO extends AbstractDAO<Medecins> {
 			pstmt.setInt(1, idSalarie);
 			deleteStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (deleteStatus==1) return true;
 		else return false;
 	}
 	
+	/**
+	 * Vérifie l'existence du medéceon sur lequel l'opération de type Retrieve, Update ou Delete doit être
+	 * Peut être supprimé lors d'un refactoring au profit de findById(int i)
+	 * 
+	 * @param idMedecin l'identifiant du médecin
+	 * @return {@code true} si le médecine existe
+	 */
 	  private boolean checkMedecinExiste(int idMedecin) {
 	  try {
 			if (findById(idMedecin).isEmpty()) {
@@ -165,6 +181,12 @@ public class MedecinsDAO extends AbstractDAO<Medecins> {
 		return true;
 	  }
 	  
+	  /**
+	 * Afin d'alléger le code des méthodes de type Retrieve du DAO, cette méthode est utilisée pour
+	 * récupérer les informations du médecin du ResultSet 
+	 * @param rs ResultSet fourni par la méthode Retrieve
+	 * @return un objet Medecins ou Null si une erreur survient
+	   */
 	  private Medecins extraireMedecin (ResultSet rs) {
 		  try {
 			String nom = rs.getString("nom");
@@ -185,10 +207,8 @@ public class MedecinsDAO extends AbstractDAO<Medecins> {
 			return new Medecins(nom, prenom, dateEntree, dateSortie, 
 					anciennete, remFixe, remVar, nbreActes, dateDoctorat, service, specialite);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		return null;
-		  
+		return null;  
 	  }
 }

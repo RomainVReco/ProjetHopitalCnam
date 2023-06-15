@@ -20,11 +20,25 @@ import Hopital.MaterielMedical;
 import Hopital.Medecins;
 import Hopital.Patients;
 
+
+/**
+ * DAO gérant les opérations CRUD pour l'objet Consultations
+ * 
+ * En plus des opérations CRUD de base, permet une recherche par
+ * - Pathologie
+ * - Nom de patient 
+ * - Médecin
+ * - identifiant de Patient
+ * 
+ * Une méthode dédiée à l'enregistrement d'un horodatage de fin de consultation est également présente
+ * 
+ * @author Romain
+ *
+ */
 public class ConsultationsDAO extends AbstractDAO<Consultations> {
 
 	public ConsultationsDAO(Connection conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -53,6 +67,15 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 		else return false;
 	}
 	
+	/**
+	 * Ajoute en base l'horodatage de fin de la consultation
+	 * Teste dans un premier temps l'existence de la consultation à mettre à jour, puis si l'horodatage de fin renseignée est bien postérieure
+	 * à l'horodatage de création de la consultation
+	 * 
+	 * @param horodagateFin l'horodatage de fin à mettre à jour en base
+	 * @param idConsultation l'identifidant de la consultation concernée
+	 * @return {@code true} si la mise à jour a bien été faite, false si une condition n'est pas vérifiée ou que la mise à jour ne s'est pas faite
+	 */
 	public boolean updateHorodatageFin(LocalDateTime horodagateFin, int idConsultation) {
 		if (checkConsultationExiste(idConsultation)==false) return false;
 		try {
@@ -72,7 +95,6 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 			pstmt.setInt(2, idConsultation);
 			updateStatut = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (updateStatut==1) return true;
@@ -141,7 +163,6 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 			}
 			
 		} catch (SQLException | ErreurTempsException | FormatIncorrectException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
@@ -162,7 +183,6 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 				return Optional.of(listeConsultationsByPatient);	
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
@@ -191,7 +211,6 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 				return Optional.of(listeConsultationsByPatient);	
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
@@ -272,6 +291,12 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 	
 	// Méthodes privées de traitement BDD, afin de simplifier le code des méthodes CRUD DAO
 	
+	/**
+	 * Méthode pour transformer en Set, les pathologies récupérées sous forme d'une longue chaîne de caractère
+	 * afin de les stocker dans un objet Consultations
+	 * @param pathologies pathologies extraite de la base de données sous forme d'un String
+	 * @return un Set de pathologies
+	 */
 	private Set<String> extraireListePathologie(String pathologies) {
 		HashSet<String> listePathologie = new HashSet<>();
 		if (pathologies==null) return listePathologie;
@@ -284,6 +309,12 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 		return listePathologie;
 	}
 	
+	/**
+	 * Afin d'alléger le code des méthodes de type Retrieve du DAO, cette méthode est utilisée pour
+	 * récupérer les informations de consultations du ResultSet 
+	 * @param rs ResultSet fourni par la méthode Retrieve
+	 * @return un objet Consultations ou Null si une erreur survient
+	 */
 	private Consultations extraireConsultation (ResultSet rs) {
 		try {
 			int idConsultation = rs.getInt("idConsultation");
@@ -321,7 +352,13 @@ public class ConsultationsDAO extends AbstractDAO<Consultations> {
 		}
 		return null;
 	}
-	
+
+	/**
+	 * Vérifie si la consultation existe en BDD
+	 * Pourrait être supprimer au profit de findById
+	 * @param idConsultation l'identifiant de la consultaiton à rechercher 
+	 * @return {@code true} si la consultation existe en BDD
+	 */
 	private boolean checkConsultationExiste(int idConsultation) {
 		try {
 			if (findById(idConsultation).isEmpty()) {

@@ -14,6 +14,19 @@ import Hopital.Adresses;
 import Hopital.Consultations;
 import Hopital.Patients;
 
+/**
+ * DAO gérant les opérations CRUD pour l'objet Patients
+ * 
+ * En plus des opérations CRUD habituelles, le DAO contient les méthodes :
+ * - findByName(String nom) 
+ * - findByNumSS (String numSS)
+ * - findByCity (String city)
+ * 
+ * Toutes peuvent être utilisées avec le wildcard '%'
+ * 
+ * @author Romain
+ *
+ */
 public class PatientsDAO extends AbstractDAO<Patients> {
 
 	public PatientsDAO(Connection conn) {
@@ -35,7 +48,6 @@ public class PatientsDAO extends AbstractDAO<Patients> {
 			insertion = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (insertion==1) return true;
@@ -57,9 +69,7 @@ public class PatientsDAO extends AbstractDAO<Patients> {
 			pstmt.setString(i++, objet.getNumeroSS());
 			pstmt.setInt(i++, objet.getIdPatient());
 			updateStatut = pstmt.executeUpdate();
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (updateStatut==1) return true;
@@ -85,7 +95,6 @@ public class PatientsDAO extends AbstractDAO<Patients> {
 			}
 				
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
@@ -102,7 +111,6 @@ public class PatientsDAO extends AbstractDAO<Patients> {
 			AdressesDAO adrDAO = new AdressesDAO(conn);
 			adrDAO.deleteById(objet.getAdressePatient().getIdAdresse());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (deleteStatus==1) return true ;
@@ -116,7 +124,6 @@ public class PatientsDAO extends AbstractDAO<Patients> {
 			pstmt.setString(1,nom);
 			deleteStatus = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (deleteStatus==1) return true;
@@ -137,27 +144,26 @@ public class PatientsDAO extends AbstractDAO<Patients> {
 				}
 				return Optional.of(listePatientsByName);
 			}
-	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
 	}
-	
-	public boolean setAllConsultations (Patients patient) {
-		int id = patient.getIdPatient();
-		if (findById(id).isEmpty()) return false;
-		ConsultationsDAO consultationDAO = new ConsultationsDAO(conn);
-		Optional<List<Consultations>> optConsultationPatient = consultationDAO.findByPatientId(id);
-		try {
-			patient.setListeConsultations(optConsultationPatient.orElseThrow());
-		} catch (NoSuchElementException e) {
-			System.out.println("Pas de consulation pour ce patient");
-			return false;
-		}
-		return true;
-	}
+
+	// code à déplacer dans le DAO de l'objet Consultations
+//	public boolean setAllConsultations (Patients patient) {
+//		int id = patient.getIdPatient();
+//		if (findById(id).isEmpty()) return false;
+//		ConsultationsDAO consultationDAO = new ConsultationsDAO(conn);
+//		Optional<List<Consultations>> optConsultationPatient = consultationDAO.findByPatientId(id);
+//		try {
+//			patient.setListeConsultations(optConsultationPatient.orElseThrow());
+//		} catch (NoSuchElementException e) {
+//			System.out.println("Pas de consulation pour ce patient");
+//			return false;
+//		}
+//		return true;
+//	}
 	
 	public Optional<List<Patients>> findByNumSS (String numSS) {
 		String sql = "";
@@ -174,7 +180,6 @@ public class PatientsDAO extends AbstractDAO<Patients> {
 				return Optional.of(listePatientsByNumSS);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
@@ -208,12 +213,17 @@ public class PatientsDAO extends AbstractDAO<Patients> {
 				return Optional.of(listByCities);
 			} 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Optional.empty();
 	}
 	
+	  /**
+	 * Afin d'alléger le code des méthodes de type Retrieve du DAO, cette méthode est utilisée pour
+	 * récupérer les informations simples du patient du ResultSet : identifiant, nom, prenom, numéro de SS. 
+	 * @param rs ResultSet fourni par la méthode Retrieve
+	 * @return un objet Patients ou Null si une erreur survient
+	   */
 	private Patients extrairePatientSimple (ResultSet rs) {
 		try {
 			int id = rs.getInt("idPatient");
@@ -221,7 +231,6 @@ public class PatientsDAO extends AbstractDAO<Patients> {
 			String prenom = rs.getString("prenom");
 			String numSS = rs.getString("numeroSS");
 			return new Patients(id, nom, prenom, numSS);
-			
 		} catch (SQLException e) {
 			new RuntimeException("Le patient n'a pu être extrait de la BDD");
 		}
