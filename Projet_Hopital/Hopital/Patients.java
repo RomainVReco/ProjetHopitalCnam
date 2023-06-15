@@ -6,7 +6,15 @@ import java.util.*;
 import idGenerator.IdGenPatients;
 
 /**
+ * Représente les patients venant à l'hopital pour une consultation
  * 
+ * Ils disposent d'un nom, prénom, d'une adresse représentée par un objet Adresses, d'une date de création
+ * et d'un numéro de Sécurité Sociale
+ * 
+ * Ils sont administrés par un agent d'accueil.
+ * 
+ * @author Romain
+ *
  */
 public class Patients {
 
@@ -16,7 +24,6 @@ public class Patients {
 	private Adresses adressePatient;
 	private String dateCreation;
 	private String numeroSS;
-	private List<Consultations> listeConsultations;
 		
 	public Patients () {
 	}
@@ -145,27 +152,6 @@ public class Patients {
 	}
 
 	/**
-	 * @return the listeConsultations
-	 */
-	public List<Consultations> getListeConsultations() {
-		return listeConsultations;
-	}
-
-	/**
-	 * @param listeConsultations the listeConsultations to set
-	 */
-	public void setListeConsultations(List<Consultations> listeConsultations) {
-		this.listeConsultations = listeConsultations;
-	}
-	
-	public void updateListeConsultations() {
-	}
-	
-	public void addConsultationPatient (Consultations nouvelleConsultation) {
-		this.listeConsultations.add(nouvelleConsultation);
-	}
-
-	/**
 	 * @return the idPatient
 	 */
 	public int getIdPatient() {
@@ -178,7 +164,7 @@ public class Patients {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dateCreation, idPatient, listeConsultations, nom, prenom);
+		return Objects.hash(dateCreation, idPatient, nom, prenom);
 	}
 
 	@Override

@@ -1,5 +1,12 @@
 package Hopital;
 
+/**
+ * Représente les spécialités exercés par des médecins
+ * 
+ * Les spécialités disposent d'un nom
+ * @author Romain
+ *
+ */
 public class Specialites {
 	
 	private int idSpecialite;

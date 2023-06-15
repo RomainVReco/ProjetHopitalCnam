@@ -1,29 +1,17 @@
 package Hopital;
 
-public class AgentAccueil extends Personnels implements CreerEntree {
+/**
+ * Classe représentant les agents d'accueil, qui héritent de la classe abstraite Personnels
+ * 
+ * Les agents d'accueil ont les droits pour créer, modifier, retrouver ou supprimer les patients dans le logiciel
+ * 
+ * Les objets AgentAccueil sont eux même gérés par un Administrateur 
+ * 
+ * A coder
+ * @author Romain
+ *
+ */
+public class AgentAccueil extends Personnels{
 
-	@Override
-	public void creerEntree() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void modifierEntree(String identifiant) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void supprimerEntree() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Patients rechercherEntree(String identifiant) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

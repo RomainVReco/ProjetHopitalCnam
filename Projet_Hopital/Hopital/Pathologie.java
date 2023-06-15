@@ -3,7 +3,11 @@ package Hopital;
 import java.util.*;
 
 /**
+ * Représente les pathologies qui peuvent être diagnostiquées au patient
  * 
+ *  Elle ont un nom et une liste de traitement
+ *  
+ *  Non présent dans la version actuelle de l'application
  */
 public class Pathologie {
 

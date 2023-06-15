@@ -7,7 +7,15 @@ import java.util.List;
 import idGenerator.IdGenMedecin;
 
 /**
+ * Représente un médecin qui est un membre du personnel
+ * Il dispse d'un nombre d'actes effectués, d'une spécialité et d'une date d'obtention de doctorat.
+ * La variable d'instance listeConsultations est utilisée pour le calcul du nombre d'actes
  * 
+ * Il reçoit des patients en consultation et peut les créer, modifier, afficher, supprimer.
+ * 
+ * Il est lui même géré par un Administrateur 
+ * 
+ * Non présent dans la version actuelle de l'application
  */
 public class Medecins extends Personnels {
 

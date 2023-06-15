@@ -3,7 +3,12 @@ package Hopital;
 import java.time.LocalDateTime;
 
 /**
+ * Représente le matériel medical prescrit par un médecin et octroyé par un technicien
+ * Le matériel est emptrunté à un horodatage donné et restitué à un horodatage postérieur
+ * Il dispose d'un statut permettant de savoir s'il est emprunté ou non
+ * Il comporte un nom et une description
  * 
+ * A coder, non présent dans l'application actuelle
  */
 public class MaterielMedical {
 

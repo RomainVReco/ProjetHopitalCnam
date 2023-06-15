@@ -5,6 +5,11 @@ import java.time.LocalDate;
 import java.time.Period;
 
 /**
+ * Classe abstraite représentant les caractéristiques communes du personnel de l'hopital
+ * 
+ * Chaque personnel dispose d'un nom, prénom, date d'entrée, date de sortie (initialisée à null à la création)
+ * d'une ancienneté (qui est calculé via une méthode dédiée), d'une rémunération fixe et variable,
+ * ainsi qu'un service d'affectation, où il exerce son activité, quel que soit le corps de métier.
  * 
  */
 public abstract class Personnels {
@@ -160,6 +165,11 @@ public abstract class Personnels {
 		this.remunerationVariable = remunerationVariable;
 	}
 	
+	/**
+	 * A partir de la date de création en BDD et l'instant présent, calcul en mois l'anciennté du salarié
+	 * 
+	 * @return un entier représentant le nombre de mois d'ancienneté
+	 */
 	public int calculAnciennete() {
 		LocalDate dateJour= LocalDate.now();
 		Period temp = Period.between(this.getDateEntree(), dateJour);

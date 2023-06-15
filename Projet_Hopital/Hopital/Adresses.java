@@ -4,6 +4,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
+/**
+ * Représente l'adresse du domicile des patients se présentant à l'hopital 
+ * @author Romain
+ *
+ */
 public class Adresses {
 	private int idAdresse;
 	private String numero;

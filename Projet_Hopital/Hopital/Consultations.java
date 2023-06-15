@@ -13,6 +13,15 @@ import Exceptions.ErreurTempsException;
 import Exceptions.FormatIncorrectException;
 import idGenerator.IdGenConsultation;
 
+/**
+ * Représente les consultations qui sont données par des médecins et où sont reçsu des patients
+ * 
+ * Les médecins rédigent un détail clinique de l'entrevue avec le patient, ils affectent des pathologies à la consultation
+ * et prescrivent des traitements dont des matériels.
+ * 
+ * @author Romain
+ *
+ */
 public class Consultations {
 
 	private int idConsultation;
@@ -145,6 +154,9 @@ public class Consultations {
 	}
 
 	/**
+	 * Ajoute le détail clinique à l'objet. Pour des raisons de qualité de consultation, 
+	 * et d'éthique médicale, un détail clinique ne peut être inférieur à 20 caractères 
+	 *  
 	 * @param detailClinique the detailClinique to set
 	 */
 	public void setDetailClinique(String detailClinique) throws FormatIncorrectException{
@@ -220,6 +232,7 @@ public class Consultations {
 		this.listePathologie.add(nouvellePathologie);
 	}
 	
+	
 	public Optional<List<String>> getPathologieFromSet(String maladie) {
 		if (this.listePathologie.isEmpty() || this.listePathologie==null) return Optional.empty();
 		HashSet<String> setStream = new HashSet<>(this.listePathologie);
@@ -230,7 +243,11 @@ public class Consultations {
 		return Optional.ofNullable(pathoRecherchee);
 
 	}
-	
+	/**
+	 * Convertit la liste des pathologies de l'objet en chaîne de caractères 
+	 *  
+	 * @return une chaine de caractères contenant les maladies diagnostiquées à la consultation. Chaque maladie est espacée par un ", "
+	 */
 	public String convertirSetPathologie () {
 		String str ="";
 		for (String s : this.listePathologie) {

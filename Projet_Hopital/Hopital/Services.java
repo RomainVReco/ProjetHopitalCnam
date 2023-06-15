@@ -4,7 +4,14 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * Représente les services de l'hopital où exerce le personnel
  * 
+ * Un service a un nom, un budget annuel alloué, un budget consommé, une liste de personnels, et un nombre de personnels
+ * 
+ * Un service est géré par un Administrateur
+ * 
+ * @author Romain
+ *
  */
 public class Services {
 
@@ -12,9 +19,8 @@ public class Services {
 	private String nomService;
 	private float budget;
 	private float budgetConsomme;
-	List<Medecins> listeMedecins;
+	List<Personnels> listePersonnels;
 	int nombrePersonnel;
-//	private Map equipements;
 
 	public Services() {
 	}
@@ -67,12 +73,12 @@ public class Services {
 		return this.budget-this.budgetConsomme;
 	}
 
-	public List<Medecins> getListeMedecins() {
-		return listeMedecins;
+	public List<Personnels> getListeMedecins() {
+		return listePersonnels;
 	}
 
-	public void setListeMedecins(List<Medecins> listeMedecins) {
-		this.listeMedecins = listeMedecins;
+	public void setListeMedecins(List<Personnels> listePersonnels) {
+		this.listePersonnels = listePersonnels;
 	}
 
 	public int getNombrePersonnel() {
@@ -100,22 +106,6 @@ public class Services {
 		return Float.floatToIntBits(budget) == Float.floatToIntBits(other.budget) && idService == other.idService
 				&& Objects.equals(nomService, other.nomService) && nombrePersonnel == other.nombrePersonnel;
 	}
-	
-	
-
-	/**
-	 * public Map getEquipements() {
-	 * 	return equipements;
-	}
-
-	public void setEquipements(Map equipements) {
-		this.equipements = equipements;
-	}
-	 * 
-	 * 
-	 */
-	
-
-	
+		
 	
 }
