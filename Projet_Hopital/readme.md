@@ -113,7 +113,7 @@ Compatible avec Windows 11.
 
 L'application propose pour le moment des fonctionnalités basiques mais est amenée à s'enrichir de plus de fonctionnalités dans un futur proche 
 
-## Gestion des personnels : <a name="people"></a> v
+## Gestion des personnels : <a name="people"></a>
 - Gestion des ajouts des salariés avec gestion des droits, dont celui d'administrateur
 - Gestion de la notion de service où exercent le personnel
 
