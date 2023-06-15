@@ -3,9 +3,9 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Hopital.Patients;
 import Vue.EcranConnexion;
 import Vue.VueRechercheAgentPatient;
+import Vue.VueRechercheConsultation;
 import connexion.SingleConnection;
 import hopital_modeles.ModelConnexion;
 import hopital_modeles.ModelGestionPatient;
@@ -41,7 +41,11 @@ public class ConnexionControleur {
 			ModelGestionPatient gp = new ModelGestionPatient();
 			GestionPatientControleur pc = new GestionPatientControleur(rp, gp, vueConnexion);
 			break;
+		// à des fins de test, l'affichage de la vue de recherche de consultation a été implémentée mais n'est présentement pas fonctionnelle
 		case "Médecin":
+			this.vueConnexion.setVisible(false);
+			VueRechercheConsultation rc = new VueRechercheConsultation();
+			rc.setVisible(true);
 			break;
 		case "Administrateur":
 			break;

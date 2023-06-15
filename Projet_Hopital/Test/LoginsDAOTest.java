@@ -21,7 +21,7 @@ import connexion.SingleConnection;
  * @author Romain
  *
  */
-class LoginsTest {
+class LoginsDAOTest {
 	
 	public static Connection connection = SingleConnection.getInstance();
 

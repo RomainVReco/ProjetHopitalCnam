@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class SingleConnection {
 	
-	String url="jdbc:mysql://localhost/tp_jdbc";
+	String url="jdbc:mysql://localhost/projethopital_rvorlet";
 	String login="root";
 	String password="";
 	private static String loginSalarie="";

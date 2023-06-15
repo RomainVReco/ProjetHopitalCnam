@@ -13,7 +13,7 @@ CREATE TABLE medecins (
 );
 
 INSERT INTO medecins (idSalarie, nom, prenom, dateEntree, dateSortie, anciennete, remunerationFixe, remunerationVariable, nbreActes, obtentionDoctorat, idConsultationEnCours) 
-VALUES (1, 'LAENNEC', 'RenÃ©', '2023-04-18', NULL, 12, 24000.05, 1000, NULL, '1811-02-17', NULL);
+VALUES (1, 'LAENNEC', 'René', '2023-04-18', NULL, 12, 24000.05, 1000, NULL, '1811-02-17', NULL);
 
 INSERT INTO medecins (idSalarie, nom, prenom, dateEntree, dateSortie, anciennete, remunerationFixe, remunerationVariable, nbreActes, obtentionDoctorat, idConsultationEnCours) 
 VALUES (2, 'PARE', 'Ambroise', '2020-06-25', NULL, 36, 36000.85, 2000.57, NULL, '1540-09-02', NULL);
