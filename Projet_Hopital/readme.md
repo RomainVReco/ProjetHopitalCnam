@@ -86,7 +86,7 @@ Ipsum Lorem
 
 # Fonctionnalités à venir: <a name="soon"></a>
 
-## Gestion des personnels : <a name="people"></a>
+## Gestion des personnels : <a name="people"></a> v
 
 Ipsum lorem
 
