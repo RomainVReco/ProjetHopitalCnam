@@ -56,6 +56,10 @@ c. Bloquer des modifications ultérieures
 
 Les écrans affichés peuvent être redimensionnés.
 
+Il est donc possible d'avoir une vue fonctionnelle agent d'accueil (login : glapeshe).
+La vue médecin, accessible avec le login rlaennec, n'est pas fonctionnelle.
+La vue admin n'est pas disponible mais affichera un message de confirmation de reconnaissance
+
 
 ## Packages: <a name="packages"></a>
 L'application comprend pour le moment 10 packages et implémente le pattern MVC :
